@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char words[22][20] = {"ant", "bear", "cat", "dog", "elephant", "frog", "goose", "horse", "iguana", "jaguar", "kangaroo",
+char words[22][20] = {"ant", "bear", "cat", "dog", "elephant", "frog", "goose", "horse", "iguana", "jaguar", "kangaroo"
                      "lion", "mouse", "ox", "pig", "rabbit", "sheep", "tiger", "urchin", "bat", "wolf", "zebra"};
 
 char hidenword[20], usedLetters[20];
@@ -56,7 +56,6 @@ void result(int f, int tries, int cg, int len){
 
 int main(){
         while(1){
-
         int lenword, countGuess=0, flag=0, flagLetter=0;
         char word[20], letter, playAgain;
 
@@ -113,11 +112,6 @@ int main(){
 
         if(playAgain=='n'){
                 break;
-        }else if(playAgain=='y'){
-                printf("%s %s", hidenword, usedLetters);
-                char hidenword[20], usedLetters[20]; //initialized again because need to clear char arrays for the new game
-                tries = 5;                 //same reason
-                usedLetterCount = 0;       //same reason
         }
 
         }
