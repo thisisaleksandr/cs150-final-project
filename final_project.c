@@ -129,6 +129,8 @@ int main(){
                 else{
                         if(countGuess != lenword){
                                 printWordWindow(lenword);
+                        }else{
+                                printf("The guessed word was '%s'\n\n", word);
                         }
                 }
                 
