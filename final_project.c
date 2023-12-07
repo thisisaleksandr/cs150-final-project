@@ -9,7 +9,7 @@ char words[25][20] = {"ant", "bear", "cat", "dog", "elephant", "frog", "goose", 
 char words2[25][20] = {"apple", "orange", "pineapple", "mango", "cherry", "avocado", "banana", "kiwi", "grape", "tangerine",
                         "grapefruit", "blueberrie", "strawberry", "raspberry", "lemon", "lime", "watermelon", "mandarin", 
                         "peach", "pear", "apricot", "papaya", "blackcurrant", "coconut", "cranberry"};
-char words3[25][20] = {"japan", "zimbabwe", "yemen", "russia", "egypt", "luxembourg", "germany", "hungary", " rwanda",
+char words3[25][20] = {"japan", "zimbabwe", "yemen", "russia", "egypt", "luxembourg", "germany", "hungary", "rwanda",
                         "portugal", "estonia", "kyrgyzstan", "tanzania", "botswana", "singapore", "angola", "mexico",
                         "uganda", "greece", "australia", "israel", "switzerland", "paraguay", "philippines", "malaysia"};
 
@@ -20,7 +20,7 @@ int randomNumber(){
 
         srand(time(NULL));
         int randomNum;
-        randomNum = rand()%25;  //Change to exact number of words
+        randomNum = rand()%25;
 
         return randomNum;
 }
@@ -88,9 +88,8 @@ int main(){
         }
 
         lenword = strlen(word);
-        printf("%s\n", word); //DELETE AFTER. IT JUST SHOWS A WORD
 
-        for(int i = 0; i < lenword; i++){  //WE HAVE WORD HERE AND _
+        for(int i = 0; i < lenword; i++){ 
                 hidenword[i] = '_';
         }
 
@@ -140,11 +139,10 @@ int main(){
         scanf(" %c", &playAgain);
 
         if(playAgain=='n' || playAgain=='N'){
-                printf("Thank you for playing the Guess the Word game!\nGoodbye\n");
+                printf("Thank you for playing the Guess the Word game!\nGoodbye!\n");
                 break;
         }else if(playAgain=='y' || playAgain=='Y'){
-                //printf("%s \n %s", hidenword, usedLetters);
-                char hidenword[20], usedLetters[20]; //initialized again because need to clear char arrays for the new game
+                char hidenword[20], usedLetters[20]; // clearing char arrays for the new game
                 tries = 5;                 //same reason
                 usedLetterCount = 0;       //same reason
         }

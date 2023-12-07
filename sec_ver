@@ -3,8 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-char words[22][20] = {"ant", "bear", "cat", "dog", "elephant", "frog", "goose", "horse", "iguana", "jaguar", "kangaroo"
-                     "lion", "mouse", "ox", "pig", "rabbit", "sheep", "tiger", "urchin", "bat", "wolf", "zebra"};
+char words[25][20] = {"ant", "bear", "cat", "dog", "elephant", "frog", "goose", "horse", "iguana", "jaguar", "kangaroo",
+                     "lion", "mouse", "ox", "pig", "rabbit", "sheep", "tiger", "urchin", "bat", "wolf", "zebra", "orangutan",
+                     "opossum", "giraffe"};
+char words2[25][20] = {"apple", "orange", "pineapple", "mango", "cherry", "avocado", "banana", "kiwi", "grape", "tangerine",
+                        "grapefruit", "blueberrie", "strawberry", "raspberry", "lemon", "lime", "watermelon", "mandarin", 
+                        "peach", "pear", "apricot", "papaya", "blackcurrant", "coconut", "cranberry"};
+char words3[25][20] = {"japan", "zimbabwe", "yemen", "russia", "egypt", "luxembourg", "germany", "hungary", "rwanda",
+                        "portugal", "estonia", "kyrgyzstan", "tanzania", "botswana", "singapore", "angola", "mexico",
+                        "uganda", "greece", "australia", "israel", "switzerland", "paraguay", "philippines", "malaysia"};
 
 char hidenword[20], usedLetters[20];
 int tries = 5, usedLetterCount=0;
@@ -13,7 +20,7 @@ int randomNumber(){
 
         srand(time(NULL));
         int randomNum;
-        randomNum = rand()%22;  //Change to exact number of words
+        randomNum = rand()%25;  //Change to exact number of words
 
         return randomNum;
 }
@@ -55,13 +62,32 @@ void result(int f, int tries, int cg, int len){
 }
 
 int main(){
+
+        printf("\nWelcome to the Guess the Word game!\nYou'll be provided with a secret word, and your task is to guess it.\n");
+        printf("Type a letter and hit enter to make a guess.\nIf your guess is correct, the corresponding letter(s) will be revealed in the word.\n");
+        printf("If your guess is incorrect, you have 5 attempts to guess the word correctly.\nAll words are single words.\n");
+        printf("The game ends when you correctly guess the word or run out of attempts.\nGood luck, and have fun guessing!\n\n");
+        
         while(1){
+
         int lenword, countGuess=0, flag=0, flagLetter=0;
-        char word[20], letter, playAgain;
+        char word[20], letter, playAgain, category='x';
 
-        strcpy(word, words[randomNumber()]);
+        while(category!='a' && category !='f' && category != 'c'){
+                printf("Choose category\nType 'a' for animals, 'f' for fruits, 'c' for countries: ");
+                scanf(" %c", &category);
+                if(category!='a' && category !='f' && category != 'c') printf("Try Again\n");
+        }
+
+        if(category=='a'){
+                strcpy(word, words[randomNumber()]);
+        }else if(category=='f'){
+                strcpy(word, words2[randomNumber()]);
+        }else{
+                strcpy(word, words3[randomNumber()]);
+        }
+
         lenword = strlen(word);
-
         printf("%s\n", word); //DELETE AFTER. IT JUST SHOWS A WORD
 
         for(int i = 0; i < lenword; i++){  //WE HAVE WORD HERE AND _
@@ -97,12 +123,15 @@ int main(){
 
                 result(flag, tries, countGuess, lenword);
 
-
                 if(tries==0){
-                printf("The guessed word was '%s'\n\n", word);
+                        printf("The guessed word was '%s'\n\n", word);
                 }
                 else{
-                        printWordWindow(lenword);
+                        if(countGuess != lenword){
+                                printWordWindow(lenword);
+                        }else{
+                                printf("The guessed word was '%s'\n\n", word);
+                        }
                 }
                 
         }
@@ -110,8 +139,14 @@ int main(){
         printf("Do you want to play again? ('y' - yes / 'n' - no) ");
         scanf(" %c", &playAgain);
 
-        if(playAgain=='n'){
+        if(playAgain=='n' || playAgain=='N'){
+                printf("Thank you for playing the Guess the Word game!\nGoodbye\n");
                 break;
+        }else if(playAgain=='y' || playAgain=='Y'){
+                //printf("%s \n %s", hidenword, usedLetters);
+                char hidenword[20], usedLetters[20]; //initialized again because need to clear char arrays for the new game
+                tries = 5;                 //same reason
+                usedLetterCount = 0;       //same reason
         }
 
         }
